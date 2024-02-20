@@ -5,4 +5,4 @@ cover: /assets/images/logo/bg.png
 ---
 
 ## Euclidean algorithm, extend Euclidean
-Test file
+Test file aaaaa
