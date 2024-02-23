@@ -29,7 +29,9 @@ A polynomial that satisfies $A_i, B_i, C_i$ could be written as:
 
 $$\sum_{i=0}^m A_i(x)w_i . \sum_{i=0}^m B_i(x)w_i = \sum_{i=0}^m C_i(x)w_i + h(x)z(x)$$
 
-Where  $z(x)$ is **`vanishing polynomial`** or $$ z(x) = \prod_{i = 1}^n (x - r_i)$$ 
+Where  $z(x)$ is **`vanishing polynomial`** or 
+
+$$ z(x) = \prod_{i = 1}^n (x - r_i)$$ 
 # Notes
 ## Lagrange interpolating
 The Lagrange interpolating polynomial is the polynomial $P(x)$ of degree $\leq (n-1)$ that passes through $n$ points. This could be written as:
