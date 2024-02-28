@@ -37,9 +37,9 @@ $$z(x) = \prod_{i = 1}^n (x - r_i)$$
 
 Let $R$ be efficiently decidable relation. If $(\phi,\omega) \in R$ then we can denote $\phi$ as the statement and $\omega$ as the witness. A NIZK has:
 
-- $\sigma \leftarrow \text{Setup}(R)$, providing CRS $\sigma$.
-- $\pi \leftarrow \text{Prove}(R,\sigma,\phi,\omega)$ providing proof of knowledge.
-- $0/1 \leftarrow \text{Verify}(R,\sigma,\phi,\pi)$ which verifies the proof.
+- $\sigma \longleftarrow \text{Setup}(R)$, providing CRS $\sigma$.
+- $\pi \longleftarrow \text{Prove}(R,\sigma,\phi,\omega)$ providing proof of knowledge.
+- $0/1 \longleftarrow \text{Verify}(R,\sigma,\phi,\pi)$ which verifies the proof.
 
 # Notes
 ## Lagrange interpolating
