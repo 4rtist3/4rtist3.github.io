@@ -14,7 +14,7 @@ ZKPs are a way to prove a statement is true without revealing anything beyond th
 - ...
 
 # Groth16
-Consider an arithmetic circuit with addition and multiplication gates over $F$. 
+Consider an arithmetic circuit with addition and multiplication gates over $\mathbb{F}$. 
 
 Groth16 is a technique allows you to prove with ZK that you know the values make the arithmetic circuit consistent.
 
@@ -23,7 +23,7 @@ Assume the given system:
 
 $$\sum_{i=0}^m A_{i,q}w_i . \sum_{i=0}^m B_{i,q}w_i = \sum_{i=0}^m C_{i,q}w_i$$
 
-Where $A_{i,q}$, $B_{i,q}$ and $C_{i,q}$ are public coefficients. If $F$ is big, we use Lagrange Interpolation (see Notes) to compute $A_i(r_q) = A_{i,q}$, similar to $B_i(r_q)$ and $C_i(r_q)$.
+Where $A_{i,q}$, $B_{i,q}$ and $C_{i,q}$ are public coefficients. If $\mathbb{F}$ is big, we use Lagrange Interpolation (see Notes) to compute $A_i(r_q) = A_{i,q}$, similar to $B_i(r_q)$ and $C_i(r_q)$.
 
 A polynomial that satisfies $A_i, B_i, C_i$ could be written as:
 
