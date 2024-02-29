@@ -71,7 +71,9 @@ To construct NILP for quadratic arithmetic program of Groth16, we first start at
 Assume we know $a(1), a(2),... a(m)$. Pick random values $r, s$ from $\mathbb{F}$ and compute matrix $\Pi$ such that $\pi = \Pi \sigma = (A,B,C)$  ($A, B, C$ are linear combinations of entries of $\sigma$) such that
 
 $$A = \alpha + \sum_{i = 0}^m a_i u_i(x) + r\delta$$
+
 $$B = \beta + \sum_{i = 0}^m a_i v_i(x) + s\delta$$
+
 $$C = \frac{\sum_{i = l + 1}^m a_i(\beta u_i(x) + \alpha v_i(x) + w_i(x)) + h(x)t(x)}{\delta} + As + rB - rs\delta$$
 
 Then the verifier can check the proof by checking this equation:
