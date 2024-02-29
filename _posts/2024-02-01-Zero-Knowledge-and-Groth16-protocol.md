@@ -25,17 +25,19 @@ Groth16 is a technique allows you to prove with ZK that you know the values make
 ## Quadratic Arithmetic Programs
 Assume the given system:
 
-$$\sum_{i=0}^m A_{i,q}w_i . \sum_{i=0}^m B_{i,q}w_i = \sum_{i=0}^m C_{i,q}w_i$$
+$$\sum_{i=0}^m u_{i,q}a_i . \sum_{i=0}^m v_{i,q}a_i = \sum_{i=0}^m w_{i,q}a_i$$
 
-Where $A_{i,q}$, $B_{i,q}$ and $C_{i,q}$ are public coefficients. If $\mathbb{F}$ is big, we use Lagrange Interpolation (see Notes) to compute $A_i(r_q) = A_{i,q}$, similar to $B_i(r_q)$ and $C_i(r_q)$.
+Where $u_{i,q}$, $v_{i,q}$ and $w_{i,q}$ are public coefficients. If $\mathbb{F}$ is big, we use Lagrange Interpolation (see Notes) to compute $u_i(r_q) = u_{i,q}$, similar to $v_i(r_q)$ and $w_i(r_q)$.
 
-A polynomial that satisfies $A_i, B_i, C_i$ could be written as:
+A polynomial that satisfies $u_i, v_i, w_i$ could be written as:
 
-$$\sum_{i=0}^m A_i(x)w_i . \sum_{i=0}^m B_i(x)w_i = \sum_{i=0}^m C_i(x)w_i + h(x)z(x)$$
+$$\sum_{i=0}^m u_i(x)a_i . \sum_{i=0}^m v_i(x)a_i = \sum_{i=0}^m w_i(x)a_i + h(x)t(x)$$
 
-for some degree $n − 2$ quotient polynomial $h(x)$ where $n$ is the degree of $z(x)$, with $z(x)$ is **vanishing polynomial** or we could write $z(x)$ as: 
+for some degree $n − 2$ quotient polynomial $h(x)$ where $n$ is the degree of $t(x)$, with $t(x)$ is **vanishing polynomial** or we could write $t(x)$ as: 
 
-$$z(x) = \prod_{i = 1}^n (x - r_i)$$ 
+$$t(x) = \prod_{i = 1}^n (x - r_i)$$ 
+
+Assume $a(0) = 1$ and $a(1), a(2),... a(l)$ are public and we want to prove that we know $a(l + 1), a(l + 2),... a(m)$.
 
 ## Non-Interactive Zero-Knowledge (NIZK) argument
 
@@ -57,16 +59,26 @@ NILPs are defined relative to a relation generator $R$, where we assume the rela
 
 - $0/1 \longleftarrow \text{Verify}(R,\sigma,\phi,\pi)$ which verifies the proof via evaluation of multivariate polynomials, and checking whether the result is 0.
 
-Assume $w(0) = 1$ and $w(1), w(2),... w(l)$ are public and we want to prove $w(l + 1), w(l + 2),... w(m)$. To construct NILP for quadratic arithmetic program of Groth16, we first start at Setup state where we select $\alpha,\beta,\delta,x \in \mathbb{F}^{*}$ randomly. Set $\tau = (\alpha,\beta,\delta,x)$ and the CRS $\sigma$ contains:
+To construct NILP for quadratic arithmetic program of Groth16, we first start at Setup state where we select $\alpha,\beta,\delta,x \in \mathbb{F}^{*}$ randomly. Set $\tau = (\alpha,\beta,\delta,x)$ and the CRS $\sigma$ contains:
 
 - $\beta,\delta$
 - $x^i \text{ for } 0 \leq i \leq 2n-2$
 - $\alpha x^i \text{ for } 0 \leq i \leq n$
 - $\beta x^i \text{ for } 0 \leq i \leq n$
-- $\frac{\beta A_i(x) + \alpha B_i(x) + C_i(x)}{\delta} \text{ for } l + 1 \leq i \leq m$
-- $\frac{x^i z(x)}{\delta} \text{ for } 0 \leq i \leq n-2$
+- $\frac{\beta u_i(x) + \alpha v_i(x) + w_i(x)}{\delta} \text{ for } l + 1 \leq i \leq m$
+- $\frac{x^i t(x)}{\delta} \text{ for } 0 \leq i \leq n-2$
 
+Assume we know $a(1), a(2),... a(m)$. Pick random values $r, s$ from $\mathbb{F}$ and compute matrix $\Pi$ such that $\pi = \Pi \sigma = (A,B,C)$  ($A, B, C$ are linear combinations of entries of $\sigma$) such that
 
+$$A = \alpha + \sum_{i = 0}^m a_i u_i(x) + r\delta$$
+$$B = \beta + \sum_{i = 0}^m a_i v_i(x) + s\delta$$
+$$C = \frac{\sum_{i = l + 1}^m a_i(\beta u_i(x) + \alpha v_i(x) + w_i(x)) + h(x)t(x)}{\delta} + As + rB - rs\delta$$
+
+Then the verifier can check the proof by checking this equation:
+
+$$A.B = \alpha + \beta + \sum_{i = 0}^l a_i(\beta u_i(x) + \alpha v_i(x) + w_i(x)) + C\delta$$
+
+If the equation equal $0$, then we can accept the proof. Fpr the simulator, we could pick $A$ and $B$ in $\mathbb{F}$ randomly and compute $C$ such that the above equation is True. Return $\pi = (A,B,C)$.
 # Notes
 ### Lagrange interpolating
 The Lagrange interpolating polynomial is the polynomial $P(x)$ of degree $\leq (n-1)$ that passes through $n$ points. This could be written as:
