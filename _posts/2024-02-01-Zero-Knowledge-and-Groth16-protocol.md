@@ -37,7 +37,7 @@ for some degree $n − 2$ quotient polynomial $h(x)$ where $n$ is the degree of 
 
 $$t(x) = \prod_{i = 1}^n (x - r_i)$$ 
 
-Assume $a(0) = 1$ and $a(1), a(2),... a(l)$ are public and we want to prove that we know $a(l + 1), a(l + 2),... a(m)$.
+Assume $a(0) = 1$ and $a(1), a(2),\dots, a(l)$ are public and we want to prove that we know $a(l + 1), a(l + 2),\dots, a(m)$.
 
 ## Non-Interactive Zero-Knowledge (NIZK) argument
 
@@ -68,7 +68,7 @@ To construct NILP for quadratic arithmetic program of Groth16, we first start at
 - $\frac{\beta u_i(x) + \alpha v_i(x) + w_i(x)}{\delta} \text{ for } l + 1 \leq i \leq m$
 - $\frac{x^i t(x)}{\delta} \text{ for } 0 \leq i \leq n-2$
 
-Assume we know $a(1), a(2),... a(m)$. Pick random values $r, s$ from $\mathbb{F}$ and compute matrix $\Pi$ such that $\pi = \Pi \sigma = (A,B,C)$  ($A, B, C$ are linear combinations of entries of $\sigma$) such that
+Assume we know $a(1), a(2),\dots, a(m)$. Pick random values $r, s$ from $\mathbb{F}$ and compute matrix $\Pi$ such that $\pi = \Pi \sigma = (A,B,C)$  ($A, B, C$ are linear combinations of entries of $\sigma$) such that
 
 $$A = \alpha + \sum_{i = 0}^m a_i u_i(x) + r\delta$$
 
