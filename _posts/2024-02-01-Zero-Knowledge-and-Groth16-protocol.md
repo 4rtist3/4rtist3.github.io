@@ -5,13 +5,17 @@ cover: /assets/images/logo/bg.png
 ---
 
 # Zero Knowledge Proof
-## Introduction
 
 ZKPs are a way to prove a statement is true without revealing anything beyond the truthiness of the statement. It means like "I could prove you that know the fact without tell you a fact".
 
 - I know value X such that `SHA256(X) = 0x7ace...` but don't tell you X.
 - I know how to fill a map with three colors so that every two adjacent regions have different colors.
 - ...
+
+The ZKPs have three core properties:
+- **Completeness:** Given the statement and the witness, the prover can convince the verifier.
+- **Soundness:** A malicious/fake prover cannot convince the verifier of false statement.
+- **Zero-Knowledge:** The proof does not reveal anything but the truth of the statement, in particular it does not reveal the prover's witness.
 
 # Groth16
 Consider an arithmetic circuit with addition and multiplication gates over $\mathbb{F}$. 
