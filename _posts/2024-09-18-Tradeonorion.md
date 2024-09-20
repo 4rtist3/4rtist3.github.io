@@ -24,5 +24,8 @@ Attack contract: [https://bscscan.com/address/0xf8bfac82bdd7ac82d3aeec98b9e1e735
 
 ## Root cause
 
+![Root cause](/assets/images//tradeonorion/requestreleasestake.png)
+
+
 ## Conclusion
 
